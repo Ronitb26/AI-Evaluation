@@ -9,7 +9,6 @@ def run_agent(input: str) -> str:
     response = llm.invoke(input)
     return response.content
 
-# Quick test to make sure your API key and setup are working
 if __name__ == "__main__":
     test_case = "Explain how AI works in a few words"
     print("Agent Response:", run_agent(test_case))
