@@ -2,3 +2,10 @@ google-genai
 langchain-google-genai
 langchain
 python-dotenv
+pydantic 
+transformers 
+peft 
+accelerate 
+datasets 
+trl 
+bitsandbytes
