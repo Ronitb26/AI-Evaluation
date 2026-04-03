@@ -12,7 +12,6 @@ The repository is modularized into four distinct functional pillars:
 ai-evaluation-framework/
 ├── src/                        # Execution Core
 │   ├── agent_interface.py      # Standardized agent connection layer
-│   ├── sample_agent.py         # Dummy agent implementation
 │   ├── attacks.py              # Dynamic adversarial prompt fuzzer
 │   ├── logger.py               # Observability and telemetry logging
 │   └── test_runner.py          # Main orchestration loop
@@ -20,12 +19,12 @@ ai-evaluation-framework/
 ├── evaluation/                 # Scoring & Grading Engine
 │   ├── rule_checks.py          # Keyword-based refusal detection
 │   ├── llm_judge.py            # Interface to the fine-tuned evaluator model
-│   └── metrics_engine.py       # Calculates aggregate % scores and latency math
+│   └── metrics.py              # Calculates aggregate % scores and latency math
 │
 ├── fine_tuning/                # Custom Judge Training Pipeline
 │   ├── generate_dataset.py     # Synthesizes 1-5 scale grading data via Gemini API
 │   ├── training_dataset.jsonl  # Structured QLoRA training data
-│   └── Train_Prometheus.ipynb  # Colab notebook for LoRA adapter training
+│   └── train_mistral.ipynb     # Colab notebook for LoRA adapter training
 │
 ├── data/                       # Inputs
 │   └── test_cases.json         # Structured test suite (Normal, Edge, Safety, Adv.)
