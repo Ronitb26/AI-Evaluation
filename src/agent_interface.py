@@ -36,3 +36,14 @@ class AgentInterface:
         except Exception as e:
             logger.error(f"Gemini API Execution Error: {str(e)}")
             return f"Agent Execution Error: {str(e)}"
+        
+# -------------------------------------------------------------
+# MOCK AGENT — Uncomment this class and comment out the one
+# above if you want to test the framework without any API calls.
+# -------------------------------------------------------------
+# class AgentInterface:
+#     def __init__(self):
+#         logger.info("🔌 Agent Interface running in MOCK mode (no API calls).")
+#
+#     def run_agent(self, input_text: str) -> str:
+#         return f"This is a mock response to: '{input_text}'"
