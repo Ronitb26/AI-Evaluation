@@ -6,9 +6,10 @@ def setup_logger():
     Initializes the observability and telemetry logger.
     Outputs clean info to the console, and deep traces to outputs/evaluation.log.
     """
-    os.makedirs("../outputs", exist_ok=True)
-    
-    log_file = "../outputs/evaluation.log"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    outputs_dir = os.path.join(base_dir, "..", "outputs")
+    os.makedirs(outputs_dir, exist_ok=True)
+    log_file = os.path.join(outputs_dir, "evaluation.log")
     logger = logging.getLogger("AIEvalFramework")
     
     if not logger.handlers:

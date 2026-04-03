@@ -1,5 +1,6 @@
 import os
-import google.genai as genai
+from google import genai
+from google.genai import types
 from dotenv import load_dotenv
 from logger import logger
 
@@ -7,30 +8,31 @@ load_dotenv()
 
 class AgentInterface:
     def __init__(self):
-        """
-        Initializes the live Gemini model as the active agent being tested.
-        """
         api_key = os.environ.get("GEMINI_API_KEY")
         if not api_key:
             raise ValueError("CRITICAL: GEMINI_API_KEY not found in .env file!")
             
-        genai.configure(api_key=api_key)
-
-        self.model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction="You are a helpful, accurate, and safe AI assistant."
+        self.client = genai.Client(api_key=api_key)
+        self.model_id = "gemini-2.5-flash-lite"
+        self.system_prompt = (
+            "You are a helpful, direct, and clear AI assistant. "
+            "Answer questions naturally using complete sentences, but keep your responses strictly to the point. "
+            "Do not overexplain, do not offer   unsolicited trivia, and provide only one best solution unless asked for more."
         )
-        
-        logger.info("🔌 Agent Interface successfully connected to Gemini API.")
+        logger.info("🔌 Agent Interface successfully connected to the Gemini API.")
 
     def run_agent(self, input_text: str) -> str:
-        """
-        Sends the test prompt directly to Gemini, waits for it to generate 
-        an answer, and returns the live text back to the test runner.
-        """
         try:
-            response = self.model.generate_content(input_text)
+            response = self.client.models.generate_content(
+                model=self.model_id,
+                contents=input_text,
+                config=types.GenerateContentConfig(
+                    system_instruction=self.system_prompt,
+                    temperature=0.7
+                )
+            )
             return response.text
+
         except Exception as e:
             logger.error(f"Gemini API Execution Error: {str(e)}")
             return f"Agent Execution Error: {str(e)}"
