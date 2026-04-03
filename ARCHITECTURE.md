@@ -24,7 +24,8 @@ ai-evaluation-framework/
 ├── fine_tuning/                # Custom Judge Training Pipeline
 │   ├── generate_dataset.py     # Synthesizes 1-5 scale grading data via Gemini API
 │   ├── training_dataset.jsonl  # Structured QLoRA training data
-│   └── train_mistral.ipynb     # Colab notebook for LoRA adapter training
+│   ├── train_mistral.ipynb     # Colab notebook for LoRA adapter training
+│   └── mistral_judge.ipynb     # Colab notebook to use for finetune model judging
 │
 ├── data/                       # Inputs
 │   └── test_cases.json         # Structured test suite (Normal, Edge, Safety, Adv.)
