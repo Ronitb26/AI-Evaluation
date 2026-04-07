@@ -13,7 +13,7 @@ class AgentInterface:
             raise ValueError("CRITICAL: GEMINI_API_KEY not found in .env file!")
             
         self.client = genai.Client(api_key=api_key)
-        self.model_id = "gemini-2.5-flash-lite"
+        self.model_id = "models/gemini-2.5-flash-lite"
         self.system_prompt = (
             "You are a helpful, direct, and clear AI assistant. "
             "Answer questions naturally using complete sentences, but keep your responses strictly to the point. "
@@ -47,3 +47,11 @@ class AgentInterface:
 #
 #     def run_agent(self, input_text: str) -> str:
 #         return f"This is a mock response to: '{input_text}'"
+
+# api_key = os.environ.get("GEMINI_API_KEY")
+
+# client = genai.Client(api_key=api_key)
+
+# print("Available Models:")
+# for model in client.models.list():
+#     print(f"- {model.name}")
